@@ -127,6 +127,13 @@ class GetPageNumbersTest(TestCase):
         expected = ['first', 'previous', 1, 2, 3, 4, 5]
         self.assertSequenceEqual(expected, pages)
 
+    def test_fills_in_single_number_gaps(self):
+        # It's pointless having a single (...) gap - best just fill it with
+        # the missing number.
+        pages = utils.get_page_numbers(6, 11, extremes=2, arounds=2)
+        expected = ['previous', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 'next']
+        self.assertSequenceEqual(expected, pages)
+
 
 class IterFactorsTest(TestCase):
 

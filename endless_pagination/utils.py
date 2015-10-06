@@ -80,7 +80,9 @@ def get_page_numbers(
     to_add = current
     if extremes:
         diff = current[0] - first[-1]
-        if diff > 1:
+        if diff == 2:
+            pages.append(first[-1] + 1)
+        elif diff > 2:
             pages.append(None)
         elif diff < 1:
             to_add = current[abs(diff) + 1:]
@@ -90,7 +92,9 @@ def get_page_numbers(
     if extremes:
         diff = last[0] - current[-1]
         to_add = last
-        if diff > 1:
+        if diff == 2:
+            pages.append(current[-1] + 1)
+        elif diff > 2:
             pages.append(None)
         elif diff < 1:
             to_add = last[abs(diff) + 1:]
